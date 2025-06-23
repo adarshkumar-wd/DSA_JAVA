@@ -291,6 +291,5 @@ public class ArraySingleDimension {
 //        System.out.println("Sum of the Elements are : " + sumOfElementsOfArray(array , 3 , 5));
 
         System.out.println(splitArray(array));
-
     }
 }
