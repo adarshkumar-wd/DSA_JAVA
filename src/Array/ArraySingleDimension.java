@@ -193,6 +193,16 @@ public class ArraySingleDimension {
 
     }
 
+    static int[] prefixSum(int [] arr){
+        int n = arr.length;
+
+        for (int i = 1 ; i < n ; i++){
+            arr[i] += arr[i-1];
+        }
+
+        return arr;
+
+    }
     static void sortOddAndEvenNumbers(int [] arr){
         int n = arr.length;
         int p1 = 0;
@@ -212,17 +222,6 @@ public class ArraySingleDimension {
         }
         System.out.print("The Sorted Array is : ");
         printArray(arr);
-
-    }
-
-    static int[] prefixSum(int [] arr){
-        int n = arr.length;
-
-        for (int i = 1 ; i < n ; i++){
-            arr[i] += arr[i-1];
-        }
-
-        return arr;
 
     }
 
