@@ -21,11 +21,11 @@ public class RatInMaze {
         if (strR > endR || strC > endC) return;
         if (strR == endR && strC == endC) System.out.println(str);
 
-        // GO RIGHT
-        printPaths(strR + 1 , strC , endR , endC , str+"R");
-
         // GO DOWN
-        printPaths(strR , strC + 1 , endR , endC , str+"D");
+        printPaths(strR + 1 , strC , endR , endC , str+"D");
+
+        // GO RIGHT
+        printPaths(strR , strC + 1 , endR , endC , str+"R");
 
     }
 
@@ -55,6 +55,20 @@ public class RatInMaze {
         isVisited[strR][strC] = false;
 
     }
+
+    private static void printParthInBlockedMazeIn2Directions(int strR , int strC , int endR , int endC , String s , int [][] maze){
+
+        if (strR > endR || strC > endC) return;
+        if (strR == endR && strC == endC){
+            System.out.println(s);
+            return;
+        }
+        if (maze[strR][strC] == 0) return;
+
+        printParthInBlockedMazeIn2Directions(strR , strC+1 , endR , endC , s+"R" , maze);
+        printParthInBlockedMazeIn2Directions(strR+1 , strC , endR , endC , s+"D" , maze);
+
+    }
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -63,14 +77,21 @@ public class RatInMaze {
         System.out.print("Enter the last Column : ");
         int endC = sc.nextInt();
 
-        boolean [][] isVisited = new boolean[endR][endC];
+//        boolean [][] isVisited = new boolean[endR][endC];
+        int [][] blockedMaze = {
+                { 1, 0, 1, 1, 1, 1 },
+                { 1, 1, 1, 1, 0, 1 },
+                { 0, 1, 1, 1, 1, 1 },
+                { 0, 0, 1, 0, 1, 1 }
+        };
 
 
 //        System.out.println(noOfPath(1 , 1 , endR , endC));
 //        printPaths(1 , 1 , endR , endC , "");
 
-        printpathIn4Direction(0 , 0 , endR-1 , endC-1 , "" , isVisited);
+//        printpathIn4Direction(0 , 0 , endR-1 , endC-1 , "" , isVisited);
 
+        printParthInBlockedMazeIn2Directions(0 , 0 , endR-1 , endC-1 , "" , blockedMaze);
     }
 
 }
